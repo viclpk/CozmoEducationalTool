@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+	<script src="{{ url_for('static',filename='js/jquery-linedtextarea.js') }}"></script>
+	<link href="{{ url_for('static',filename='css/jquery-linedtextarea.css') }}" type="text/css" rel="stylesheet" />
+
+	
+<body>
+
+<style>
+
+p {
+
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 0px;
+    margin-left: 50px;
+
+}
+
+p2 {
+
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 0px;
+    margin-left: 500px;
+
+}
+
+body{
+
+	background-image: url({{ url_for('static', filename='img/cozmo_background7.jpg') }});
+    background-repeat: no-repeat;
+    background-size: cover;
+
+
+}
+
+div.editable {
+    width: 300px;
+    height: 200px;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+strong {
+  font-weight: bold;
+}
+
+.inline-div {
+    display:inline-block;
+	margin-left:50px;
+}
+
+.inline-div2 {
+    display:inline-block;
+	margin-left:50px;
+	
+	background-attachment: local;
+	background-image:
+	linear-gradient(to right, white 10px, transparent 10px),
+	linear-gradient(to left, white 10px, transparent 10px),
+	repeating-linear-gradient(white, white 30px, #ccc 30px, #ccc 31.2px, white 31.2px);
+	line-height: 31.2px;
+	padding: 2px 10px;
+
+}
+.inline-txtarea1 {
+    resize: none;
+    border : 2px solid red;
+    height:350px;
+	width:600px;
+	
+
+}
+
+.inline-txtarea2{
+    resize: none;
+    border : 2px solid yellow;
+    height:350px;
+	width:120px;
+	
+
+}
+
+</style>
+</head>
+<title>Cozmo</title>
+
+<p><img src="/static/img/cozmo_logo.png" style="width:200px;height:50px;">
+
+<br>
+<br>
+
+Type the commands or <input type="file" id="fileInput" onchange="document.getElementById('IDNome').value = this.value.split('\\').pop().split('/').pop().split('.').splice(0, 1)">
+ 
+<!-- Conteúdo -->
+<form method="post" id = "myForm">  
+
+<div style="background-color:white" class="inline-div">
+    <p align="center"></p>
+	
+
+	{{form.my_txtarea(cols=60, rows=20)}} 
+	
+</div>
+<div style="background-color:white" class="inline-div">
+<p align="center"></p>
+    
+
+	{{form.check_txtarea(cols=60, rows=20)}} 
+
+</div>
+
+<div style="background-color:white; width: 400px; height: 330px; overflow-y: scroll;" class="inline-div2" contenteditable="false">
+
+<strong>Cozmo Function's </strong>
+<br><strong>forward(distance in mm):</strong>
+<br><p><strong>Definition:</strong> This function is used for Cozmo to move forward for a specific distance in mm
+<br><strong>Example:</strong> forward(100) → Cozmo moves forward for 100mm
+</p>
+
+<br><strong>backward(distance in mm):</strong>
+<br><p><strong>Definition:</strong> This function is used for Cozmo to move backword for a specific distance in mm
+<br><strong>Example:</strong> backward(100) → Cozmo moves backward for 100mm
+</p>
+
+
+<br><strong>left(angle in degrees):</strong>
+<br><p><strong>Definition:</strong> This function is used for Cozmo to turn left for a specific angle in degrees
+<br><strong>Example:</strong> left(90) → Cozmo turns 90 degrees left
+</p>
+
+<br><strong>right(angle in degrees):</strong>
+<br><p><strong>Definition:</strong> This function is used for Cozmo to turn right for a specific angle in degrees
+<br><strong>Example:</strong> right(90) → Cozmo turns 90 degrees right
+</p>
+
+<br><strong>pen up:</strong>
+<br><p><strong>Definition:</strong> This function is used for Cozmo to raise his arm so the pen does not touch the surface while he is moving
+<br><strong>Example:</strong> pen up
+</p>
+
+<br><strong>pen down:</strong>
+<br><p><strong>Definition:</strong> This function is used for Cozmo to put down his arm so the pen touches the surface while he is moving
+<br><strong>Example:</strong> pen down
+</p>
+
+
+<br><strong>draw circle:</strong>
+<br><p><strong>Definition:</strong> This function is used for Cozmo to draw a circle using a pen attached to his arm
+<br><strong>Example:</strong> draw circle → Cozmo draws a circle
+</p>
+
+<br><strong>draw triangle:</strong>
+<br><p><strong>Definition:</strong> This function is used for Cozmo to draw a triangle using a pen attached to his arm
+<br><strong>Example:</strong> draw triangle → Cozmo draws a triangle
+</p>
+
+<br><strong>draw square:</strong>
+<br><p><strong>Definition:</strong> This function is used for Cozmo to draw a square using a pen attached to his arm
+<br><strong>Example:</strong> draw square → Cozmo draws a square
+</p>
+
+<br><strong>draw rectangle:</strong>
+<br><p><strong>Definition:</strong> This function is used for Cozmo to draw a rectangle using a pen attached to his arm
+<br><strong>Example:</strong> draw rectangle → Cozmo draws a rectangle
+</p>
+
+<br><strong>game circle:</strong>
+<br><p><strong>Definition:</strong> This function is used for Cozmo to draw a circle using a pen attached to his arm and ask three questions about the circle
+<br><strong>Questions:</strong> 
+<br> 1. What is the name of this geometric shape?
+<br> 2. Is a circle's shape round?
+<br> 3. Does a circle have straight lines?
+<br><strong>Example:</strong> game circle → Cozmo draws a circle and ask the three questions
+</p>
+
+<br><strong>game triangle:</strong>
+<br><p><strong>Definition:</strong> This function is used for Cozmo to draw a triangle using a pen attached to his arm
+<br><strong>Questions:</strong> 
+<br> 1. What is the name of this geometric shape?
+<br> 2. How many lines does a triangle shape have?
+<br> 3. Is a triangle's shape round?
+<br><strong>Example:</strong> game triangle → Cozmo draws a triangle and ask the three questions
+</p>
+
+<br><strong>game square:</strong>
+<br><p><strong>Definition:</strong> This function is used for Cozmo to draw a square using a pen attached to his arm
+<br><strong>Questions:</strong> 
+<br> 1. What is the name of this geometric shape?
+<br> 2. How many lines does a square shape have?
+<br> 3. How many equal lines does a square shape have?
+<br><strong>Example:</strong> game square → Cozmo draws a square and ask the three questions
+</p>
+
+<br><strong>game rectangle:</strong>
+<br><p><strong>Definition:</strong> This function is used for Cozmo to draw a rectangle using a pen attached to his arm
+<br><strong>Questions:</strong> 
+<br> 1. What is the name of this geometric shape?
+<br> 2. How many lines does a rectangle shape have?
+<br> 3. Is a rectangle shape the same as a square shape?
+<br><strong>Example:</strong> game rectangle → Cozmo draws a rectangle and ask the three questions
+</p>
+
+
+<br><strong>draw on screen:</strong>
+<br><p><strong>Definition:</strong> This function is used for a person to draw figures on the computer (or tablet) screen. Then, Cozmo draws the same figures using a pen attached to his arm
+</p>
+
+
+<br><strong>sum(number 1 + number 2):</strong>
+<br><p><strong>Definition:</strong> This function is used for Cozmo to ask for the sum answer of two numbers given by the programmer. The sum problem is shown on Cozmo LCD screen. The answer must be given by voice command
+<br><strong>Example:</strong> sum(2+5) → Cozmo asks how much is 2+5
+</p>
+
+
+<br><strong>sub(number 1 - number 2):</strong>
+<br><p><strong>Definition:</strong> This function is used for Cozmo to ask for the subtraction answer of two numbers given by the programmer. The subtraction problem is shown on Cozmo LCD screen. The answer must be given by voice command
+<br><strong>Example:</strong> sum(3-1) → Cozmo asks how much is 3-1
+</p>
+
+<br><strong>mult(number 1 * number 2):</strong>
+<br><p><strong>Definition:</strong> This function is used for Cozmo to ask for the multiplication answer of two numbers given by the programmer. The multiplication problem is shown on Cozmo LCD screen. The answer must be given by voice command
+<br><strong>Example:</strong> sum(1*3) → Cozmo asks how much is 1*3
+</p>
+
+<br><strong>div(number 1 / number 2):</strong>
+<br><p><strong>Definition:</strong> This function is used for Cozmo to ask for the division answer of two numbers given by the programmer. The sum problem is shown on Cozmo LCD screen. The answer must be given by voice command
+<br><strong>Example:</strong> div(8/2) → Cozmo asks how much is 8 divided by 2
+</p>
+
+<br><strong>quadratic equation(a = value of a,b = value of b, c = value of c):</strong>
+<br><p><strong>Definition:</strong> This function is used for Cozmo to ask for solution of the specified quadratic equation. The equation is shown on Cozmo LCD screen. The answer must be given by voice command
+<br><strong>Example:</strong> quadratic equation(a = 1,b = 2, c = 1) → Cozmo asks for the solution of this quadratic equation
+</p>
+
+<br><strong>speak(words to speak):</strong>
+<br><p><strong>Definition:</strong> This function is used for Cozmo to speak the desired words
+<br><strong>Example:</strong> speak(Hi, my name is Cozmo) → Cozmo speaks: Hi, my name is Cozmo
+</p>
+
+<br><strong>play animation(type of animation):</strong>
+<br><p><strong>Definition:</strong> This function is used for Cozmo to play a animation
+<br><strong>Types of animations:</strong>
+<br>• happy
+<br>• sad
+<br>• angry
+<br>• surprise
+<br>• bored
+<br>• sleep
+<br>• wake
+<br><strong>Example:</strong> play animation(happy) → Cozmo acts like he is happy
+</p>
+
+<br><strong>play video(YouTube video link):</strong>
+<br><p><strong>Definition:</strong> This function is used for open a YouTube page video on the computer
+<br><strong>Example:</strong> 
+<br>play video(https://www.youtube.com/watch?v=g3uHKlXy5Yw) → Opens the YouTube link page and plays the video 
+</p>
+
+<br><strong>find face:</strong>
+<br><p><strong>Definition:</strong> This function is used for Cozmo to look for the person's face to interact. 
+</p>
+
+<br><strong>find(object to find):</strong>
+<br><p><strong>Definition:</strong> This function is used to give directions (forward,backward,left,right) for Cozmo to find a specific object given by the programmer
+The directions must be given by voice command. When Cozmo is facing the desired object, the person must say the word "Picture" for Cozmo to identify if the object is the desired one.
+<br><strong>Example:</strong> find(ball) → The person have to give the directions for Cozmo to find a ball 
+</p>
+</p>
+
+
+
+<br><strong>ask(question to be asked):</strong>
+<br><p><strong>Definition:</strong> This function is used for Cozmo to ask a desired question for the user. The questions can be about everything, including mathematical problems. To implement this functions, is necessary to implement 2 other functions and 1 optional function.
+<br><strong>Necessary Functions:</strong>
+<br>1. wait for answer
+<br>2. if answer = (correct answer)
+<br><strong>Optional Function:</strong>
+<br>1. if not
+<br>To understand how those 3 functions works, look for its definition below.
+<br><strong>Example 1:</strong> 
+<br>ask(how many letters are there on the Latin alphabet?)
+<br>wait for answer
+<br>if answer = 26
+<br>play animation(happy)
+<br>speak(congratulations)
+<br>end if
+<br><strong>Example 2: </strong>
+<br>draw square
+<br>ask(What is the name of this geometric shape?)
+<br>wait for answer
+<br>if answer = square
+<br>speak(Yes, you are right!)
+<br>end if
+<br>if not
+<br>play animation(sad)
+<br>speak(Sorry, but that is not the right answer. This geometric shape is a square. Watch the video on the computer screen to understand more about square shapes)
+<br>play video(https://www.youtube.com/watch?v=WHypLi16j4o)
+<br>end if not
+</p>
+
+<br><strong>wait for answer:</strong>
+<br><p><strong>Definition:</strong> This function is used to activate the computer's microphone to capture the answer given by the person that Cozmo is playing with.
+</p>
+
+<br><strong>if answer = correct answer</strong>
+<br>write other functions here
+<br><strong>end if</strong>
+<br><p><strong>Definition:</strong> This function is used to compare if the answer given by the person is the same as the correct answer, which should be given by the programmer. 
+In the case of the answers are equal, the program will run all the code implemented between "if answer = correct answer" and "end if". 
+Otherwise, it will run the "if not" function codes(only if it is implemented).
+<br><p><strong>Important:</strong> If the answer is a number, it must be typed the digit number and not the word number 
+</p>
+
+<br><strong>if not</strong>
+<br>write other functions here
+<br><strong>end if not</strong>
+<br><p><strong>Definition:</strong> This function is used to implement codes when the answer given by the person is not the same as the correct answer, which should be given by the programmer.
+In the case of the answers are not equal, the program will run the code implemented between "if not" and "end if not"
+</p>
+
+</div>
+
+<p>
+
+<img src="/static/img/cozmo_look.png" style="width:260px;height:200px;position:absolute; TOP:600px; LEFT:1400px;">
+
+
+<input type="submit" name=executar value="Run" id = "BotaoRun">
+<br>
+<br>
+
+File name:
+
+{{ form.IDNome}}
+
+<input type="submit" name="BotaoSalvar" value="Save" onclick = "handleChange()"/>
+<br>
+
+
+<script>
+
+window.onload = function() {
+		var fileInput = document.getElementById('fileInput');
+		var fileDisplayArea = document.getElementById('my_txtarea');
+		
+		var fileDisplayName = document.getElementById('IDNome'); 
+
+		fileInput.addEventListener('change', function(e) {
+			var file = fileInput.files[0];
+			var textType = /text.*/;
+
+			if (file.type.match(textType)) {
+				var reader = new FileReader();
+
+				reader.onload = function(e) {
+					fileDisplayArea.innerText = reader.result
+					fileDisplayName.innerText = file.get
+					
+					
+				}
+				reader.readAsText(file, "UTF-8");	
+			} else {
+				fileDisplayArea.innerText = "File not supported!"
+			}
+		});
+}
+
+
+
+function handleChange(input) {
+	var x = document.getElementById("IDNome").value;
+	var y = x.replace(/ /g,"")
+	if (y === "")
+	{
+		alert("Insert the file's name");
+	}
+		
+}
+  
+	
+function myFunction() {
+    document.getElementById("myForm").submit();
+}
+
+
+$(function() {
+	$(".lined").linedtextarea(
+
+	);
+});
+
+  // Target a single one
+  $("#mytextarea").linedtextarea();
+
+</script>
+</form>
+</body></html>
